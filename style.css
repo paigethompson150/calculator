@@ -37,6 +37,12 @@ button {
     padding: 10px;
 }
 
+#display {
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 #displayBox {
     margin-top: 15px;
     margin-left: auto;
@@ -51,6 +57,7 @@ button {
     border-radius: 30px;
 }
 
+
 #sum {
     width: 90%;
     height: 80%;
@@ -58,6 +65,8 @@ button {
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 30px;
+    display: flex;
+    flex-directiom: column;
 }
 
 #functions {

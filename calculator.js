@@ -1,28 +1,58 @@
+//object to store the increasing sum
 let sum = [];
-let newnum = 0;
+//object to store the second number input
+let newnum = [];
+//toggle will check whether to add to newnum
+let toggle = false;
+let addition = false;
+let mult = false;
+let subtraction = false;
+let division = false;
 
 function divide(num){
-    console.log('I will divide');
+    division = false;
 }
 
 function multiply(num){
-    console.log('I will multiply');
+    mult = false;
 }
 
 function subtract(num){
-    console.log('I will subtract');
+    subtraction = false;
 }
 
-function add(num){
-    console.log('I will add here');
+function add(num1,num2){
+    addition = false;
+}
+
+function perform(sum, newnum){
+    if (division === true){
+        divide(sum,newnum);
+    }
+    else if (mult === true){
+        multiply(sum,newnum);
+    }
+    else if (subtraction === true){
+        subtract(sum,newnum);
+    }
+    else if (addition === true){
+        add(sum,newnum);
+    }
 }
 
 function display(sum){
-    box = document.querySelector('#display');
-    console.log(typeof(box));
-    box.innerHTML(`${sum}`);
+    let box = document.querySelector('#display');
+    //cleaning up the display
+    modSum = Array.from(sum);
+    modSum = modSum.join('');
+    box.textContent = `${modSum}`;
 }
 
+function clearDisplay(){
+    let box = document.querySelector('#display')
+    box.textContent = '';
+    //while (box.firstChild) box.removeChild(box.firstChild);
+}
 
 
 function main(){
@@ -31,25 +61,40 @@ function main(){
     for (var i = 0; i <= buttonCount; i +=1) {
         buttons[i].addEventListener('click', function(e){
             if (this.id === 'add') {
+                clearDisplay();
+                addition = true;
+                toggle = true;
                 add(sum);
             }
             else if (this.id === 'subtract'){
-                subtract(sum);
+                clearDisplay();
+                subtraction = true;
+                toggle = true;
             }
             else if (this.id === 'multiply'){
-                multiply(sum);
+                clearDisplay();
+                mult = true;
+                toggle = true;
             }
             else if (this.id === 'divide'){
-                divide(sum);
+                clearDisplay();
+                division = true;
+                toggle = true;
             }
-            else if (this.id === '0'){
-                sum.push(0);
-                display(sum);
+            else if (this.id === 'clear'){
+                sum = [];
+                newnum = [];
+                
             }
-            else if (this.id === '1'){
-                sum.push(1);
-                display(sum);
+            else if (this.id === 'equal'){
+                clearDisplay();
+                
             }
+            else {
+                sum.push(this.id);
+                
+            }
+            display(sum);
 
         });
     }
