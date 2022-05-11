@@ -23,20 +23,25 @@ function subtract(num){
 
 function add(num1,num2){
     addition = false;
+
 }
 
 function perform(sum, newnum){
     if (division === true){
         divide(sum,newnum);
+        console.log('divide');
     }
     else if (mult === true){
         multiply(sum,newnum);
+        console.log('multiply');
     }
     else if (subtraction === true){
         subtract(sum,newnum);
+        console.log('subtract');
     }
     else if (addition === true){
         add(sum,newnum);
+        console.log('add');
     }
 }
 
@@ -58,47 +63,52 @@ function clearDisplay(){
 function main(){
     let buttons = document.querySelectorAll('button');
     let buttonCount = buttons.length;
-    for (var i = 0; i <= buttonCount; i +=1) {
-        buttons[i].addEventListener('click', function(e){
-            if (this.id === 'add') {
+    //iterate through buttons
+    let box = document.querySelector('#container');
+    box.addEventListener('click', (e) => {
+        if(e.target.tagName === 'BUTTON'){
+            if (e.target.id === 'add') {
                 clearDisplay();
                 addition = true;
                 toggle = true;
                 add(sum);
+                console.log('add');
             }
-            else if (this.id === 'subtract'){
+            else if (e.target.id === 'subtract'){
                 clearDisplay();
                 subtraction = true;
                 toggle = true;
+                console.log('subtract');
             }
-            else if (this.id === 'multiply'){
+            else if (e.target.id === 'multiply'){
                 clearDisplay();
                 mult = true;
                 toggle = true;
+                console.log('mult');
             }
-            else if (this.id === 'divide'){
+            else if (e.target.id === 'divide'){
                 clearDisplay();
                 division = true;
                 toggle = true;
+                console.log('divide');
             }
-            else if (this.id === 'clear'){
+            else if (e.target.id === 'clear'){
                 sum = [];
                 newnum = [];
-                
+                console.log('clear');
             }
-            else if (this.id === 'equal'){
+            else if (e.target.id === 'equal'){
                 clearDisplay();
-                
+                console.log('equal');
             }
             else {
-                sum.push(this.id);
+                sum.push(e.target.id);
                 
             }
             display(sum);
 
-        });
-    }
-    
+        }
+    });
     
 }
 
