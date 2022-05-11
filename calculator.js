@@ -2,8 +2,7 @@
 let sum = [];
 //object to store the second number input
 let newnum = [];
-//toggle will check whether to add to newnum
-let toggle = false;
+
 let addition = false;
 let mult = false;
 let subtraction = false;
@@ -55,8 +54,26 @@ function display(sum){
 
 function clearDisplay(){
     let box = document.querySelector('#display')
-    box.textContent = '';
-    //while (box.firstChild) box.removeChild(box.firstChild);
+    var i = 0;
+    var len = sum.length;
+    //while(i < len){
+    //    sum[i] = parseFloat(sum[i]);
+    //    i++;
+    //}
+    //sum = sum.map(i => parseFloat(i));
+    if (newnum === '') {
+        newnum = +sum;
+        console.log(typeof(newnum));
+        sum = [];
+    }
+    else {
+        newnum = +newnum + +sum;
+        console.log(typeof(newnum));
+        console.log(typeof(sum));
+        console.log(newnum);
+        sum = [];
+    }
+    
 }
 
 
@@ -70,8 +87,7 @@ function main(){
             if (e.target.id === 'add') {
                 clearDisplay();
                 addition = true;
-                toggle = true;
-                add(sum);
+
                 console.log('add');
             }
             else if (e.target.id === 'subtract'){
