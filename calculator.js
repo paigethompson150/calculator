@@ -52,6 +52,11 @@ function display(sum){
     box.textContent = `${modSum}`;
 }
 
+function answerDisplay(sum){
+    let box = document.querySelector('#display');
+    box.textContent = parseFloat(sum);
+}
+
 function clearDisplay(){
     let box = document.querySelector('#display')
     var i = 0;
@@ -68,9 +73,6 @@ function clearDisplay(){
     }
     else {
         newnum = +newnum + +sum;
-        console.log(typeof(newnum));
-        console.log(typeof(sum));
-        console.log(newnum);
         sum = [];
     }
     
@@ -87,41 +89,45 @@ function main(){
             if (e.target.id === 'add') {
                 clearDisplay();
                 addition = true;
-
                 console.log('add');
+                display(sum);
             }
             else if (e.target.id === 'subtract'){
                 clearDisplay();
                 subtraction = true;
                 toggle = true;
                 console.log('subtract');
+                display(sum);
             }
             else if (e.target.id === 'multiply'){
                 clearDisplay();
                 mult = true;
                 toggle = true;
                 console.log('mult');
+                display(sum);
             }
             else if (e.target.id === 'divide'){
                 clearDisplay();
                 division = true;
                 toggle = true;
                 console.log('divide');
+                display(sum);
             }
             else if (e.target.id === 'clear'){
                 sum = [];
                 newnum = [];
                 console.log('clear');
+                display(sum);
             }
             else if (e.target.id === 'equal'){
                 clearDisplay();
+                answerDisplay(newnum);
                 console.log('equal');
             }
             else {
                 sum.push(e.target.id);
-                
+                display(sum);
             }
-            display(sum);
 
         }
     });
