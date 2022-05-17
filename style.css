@@ -2,11 +2,21 @@
     box-sizing: border-box;
 }
 
+body{
+    background: linear-gradient(to right, #00AAFF, #00FF6C);
+}
+
 button {
     height:100px;
     width: 100px;
     border-radius: 30px;
 
+}
+
+button:hover {
+    transform: scale(1.05,1.05);
+    -webkit-transform:scale(1.05,1.05,);
+    -moz-transform:scale(1.05,1.05);
 }
 
 #clear {
@@ -66,10 +76,10 @@ button {
     margin-bottom: 10px;
     border-radius: 30px;
     display: flex;
-    flex-directiom: column;
+
 }
 
-#functions {
+#operations {
     display: flex;
     flex-direction: column;
     background-color: white;
@@ -88,4 +98,8 @@ button {
     margin: auto;
     flex-direction: column;
     border-radius: 30px;
+}
+
+#equal {
+    background-color: lightblue;
 }
