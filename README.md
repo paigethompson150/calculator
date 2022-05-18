@@ -1,2 +1,2 @@
 # calculator
-Final project in The Odin Project Foundations. Here I  use JavaScript, CSS, and HTML to create a functioning calculator.
+Final project in The Odin Project Foundations. Here I  use JavaScript, CSS, and HTML to create a functional calculator! It took me way too long to figure out the logic behind storing the previous and current operands, but this project was a fantastic learning opportunity :). 
