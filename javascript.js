@@ -1,113 +1,127 @@
-let sum = [];
-let newnum = [];
+let currentOperand = [];
+let previousOperand = [];
 
 let addition = false;
 let subtraction = false;
+let multiplication = false;
+let division = false;
 const display = document.querySelector('#display');
 let buttons = Array.from(document.querySelectorAll('button'));
+
+function add(first, second){
+    return first + second;
+}
+
+function subtract(first, second){
+    return first - second;
+}
+
+function multiply(first, second){
+    return first * second;
+}
+
+function divide(first,second){
+    return first / second;
+}
+
+function evaluate(first, second){
+    //converting arrays into numbers for arithmetic
+    //if it is an array, convert it into a string and then an integer
+    if (isNaN(first) === true){
+        first = first.join('');
+    }
+    second = second.join('');
+    first = parseInt(first);
+    second = parseInt(second);
+    if (addition === true){
+        sum = add(first,second);
+        addition = false;
+        return sum;
+    }
+    else if (subtraction === true){
+        sum = subtract(first, second);
+        subtraction = false;
+        return sum;
+    }
+    else if (multiplication === true){
+        sum = multiply(first, second);
+        multiplication = false;
+        return sum;
+    }
+    else if (division === true){
+        sum = divide(first, second);
+        division = false;
+        return sum;
+    }
+    else {
+        return second;
+    }
+}
+
+
+
 
 buttons.map(button => {
     button.addEventListener('click', (e) => {
         if (button.id === 'clear'){
             display.innerText = '';
+            currentOperand = [];
+            previousOperand = [];
         }
-        if (button.id === 'equal'){
-            display.innerText = eval(display.innerText);
-            return;
-        }
-        display.innerText += e.target.innerText;
-    });
-});
-/*
-//displays the numbers that the user inputs
-function choiceDisplay(num){
-    //cleaning up the display
-    //modNum = Array.from(num);
-    try {
-        modNum = num.join('');
-    }
-    catch (error){
-        display.textContent = `${num}`
-    }
-    
-    display.textContent = `${modNum}`;
-}
-
-//displays the answer
-function answerDisplay(sum){
-    display.textContent = parseFloat(sum);
-    addition = false;
-    subtraction = false;
-}
-
-//clears the display
-function clearDisplay(){
-    sum = [];
-    newnum = [];
-    choiceDisplay(newnum);
-}
-
-function add(first, second){
-    first = first.join('');
-    //second = second.join('');
-    return +first + +second;
-}
-
-function subtract(first, second){
-    first = first.join('');
-    return (+first - second) * -1;
-}
-
-//determines which arithmetic function to invoke
-function evaluate(first, second){
-    if (addition === true){
-        return add(first,second);
-    }
-    if (subtraction === true){
-        return subtract(first,second);
-    }
-    
-
-}
-
-function main(){
-    let buttonCount = buttons.length;
-    display.addEventListener('click', (e) => {
-        if(e.target.tagName === 'BUTTON'){
-            if (e.target.id === 'add') {
-                //pushes the user's input to the variable sum, to keep store of it for future arithmetic.
-                //sets newnum to zero to load future numberes inputted from number.
-                sum = add(newnum, sum);
-                newnum = [];
-                addition = true;
-            }
-            else if (e.target.id === 'subtract'){
-                sum = add(newnum, sum);
-                newnum = [];
-                subtraction = true;
-            }
-            else if (e.target.id === 'multiply'){
-                
-            }
-            else if (e.target.id === 'divide'){
-                
-            }
-            else if (e.target.id === 'clear'){
-                clearDisplay();
-            }
-            else if (e.target.id === 'equal'){
-                sum = evaluate(newnum, sum);
-                console.log(sum);
-                answerDisplay(sum);
+        else if (button.id === 'add'){
+            if (typeof(previousOperand) != 'object'){
+                //do nothing, keep previous operand as is
             }
             else {
-                //appends number to the screen
-                newnum.push(e.target.id);
-                choiceDisplay(newnum);
+                previousOperand = currentOperand;
             }
-
+            currentOperand = [];
+            addition = true;
+            
         }
-    });
+        else if (button.id === 'subtract'){
+                if (typeof(previousOperand) != 'object'){
+                    //do nothing, keep previous operand as is
+                }
+                else {
+                    previousOperand = currentOperand;
+                }
+                currentOperand = [];
+                subtraction = true;
+        }
+        else if (button.id === 'multiply'){
+            if (typeof(previousOperand) != 'object'){
+                //do nothing, keep previous operand as is
+            }
+            else {
+                previousOperand = currentOperand;
+            }
+            currentOperand = [];
+            multiplication = true;
+        }
+        else if (button.id === 'divide'){
+            if (typeof(previousOperand) != 'object'){
+                //do nothing, keep previous operand as is
+            }
+            else {
+                previousOperand = currentOperand;
+            }
+            currentOperand = [];
+            division = true;
+        }
+        else if (button.id === 'equal'){
+            previousOperand = evaluate(previousOperand, currentOperand);
+            display.innerText = `${previousOperand}`;
+            addition = false;
+            subtraction = false;
+            return;
+        }
+        
+        else {
+            currentOperand.push(e.target.id);
+        }
+        //append number to the screen
+        display.innerText += e.target.innerText;
 
-}
-*/
+    });
+});
