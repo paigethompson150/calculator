@@ -58,7 +58,34 @@ function evaluate(first, second){
     }
 }
 
+//adds key functionality
+document.addEventListener('keydown', function(e) {
+    if(e.key in buttons){
+        let simulatedButton = document.getElementById(e.key);
+        simulatedButton.click();
+    }
+    if(e.key == '='){
+        let simulatedButton = document.getElementById('equal');
+        simulatedButton.click();
+    }
+    if(e.key == '+'){
+        let simulatedButton = document.getElementById('add');
+        simulatedButton.click();
+    }
+    if(e.key == '-'){
+        let simulatedButton = document.getElementById('subtract');
+        simulatedButton.click();
+    }
+    if(e.key == '*'){
+        let simulatedButton = document.getElementById('multiply');
+        simulatedButton.click();
+    }
+    if(e.key == '/'){
+        let simulatedButton = document.getElementById('divide');
+        simulatedButton.click();
+    }
 
+})
 
 
 buttons.map(button => {
