@@ -31,8 +31,8 @@ function evaluate(first, second){
         first = first.join('');
     }
     second = second.join('');
-    first = parseInt(first);
-    second = parseInt(second);
+    first = parseFloat(first);
+    second = parseFloat(second);
     if (addition === true){
         sum = add(first,second);
         addition = false;
