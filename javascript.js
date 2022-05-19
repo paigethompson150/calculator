@@ -112,11 +112,8 @@ buttons.map(button => {
         else if (button.id === 'equal'){
             previousOperand = evaluate(previousOperand, currentOperand);
             display.innerText = `${previousOperand}`;
-            addition = false;
-            subtraction = false;
             return;
         }
-        
         else {
             currentOperand.push(e.target.id);
         }
